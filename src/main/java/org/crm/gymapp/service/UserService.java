@@ -1,11 +1,10 @@
 package org.crm.gymapp.service;
 
-import org.crm.gymapp.dto.UserDTO;
 import org.crm.gymapp.entity.UsersEntity;
 import org.crm.gymapp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -20,4 +19,11 @@ public class UserService {
        return userRepository.findByUsername(username);
     }
 
+    public UsersEntity getUserById(UUID uuid) {
+        return userRepository.findById(uuid);
+    }
+
+    public void saveUser(UsersEntity user) {
+        userRepository.save(user);
+    }
 }
