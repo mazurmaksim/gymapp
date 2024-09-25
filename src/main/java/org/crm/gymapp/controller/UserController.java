@@ -6,6 +6,7 @@ import org.crm.gymapp.entity.UsersEntity;
 import org.crm.gymapp.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,18 +37,5 @@ public class UserController {
         UsersEntity map = modelMapper.map(userDTO, UsersEntity.class);
         userService.saveUser(map);
         return modelMapper.map(map, UserDTO.class);
-    }
-
-    @GetMapping("/")
-    public ModelAndView homePage(ModelMap model) {
-        model.addAttribute("login", new LoginDAO("", ""));
-        return new ModelAndView("home", model);
-    }
-
-    @PostMapping("/login")
-    public ModelAndView login(@ModelAttribute LoginDAO loginDAO, ModelMap model) {
-        System.out.println("loginDAO: " + loginDAO);
-        model.addAttribute("login", new LoginDAO("", ""));
-        return new ModelAndView("success", model);
     }
 }
