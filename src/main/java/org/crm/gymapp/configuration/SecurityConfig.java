@@ -1,5 +1,7 @@
 package org.crm.gymapp.configuration;
 
+import jakarta.servlet.DispatcherType;
+import org.crm.gymapp.handler.CustomLoginSuccessHandler;
 import org.crm.gymapp.service.CustomUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +24,14 @@ public class SecurityConfig {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .permitAll()
-                        .defaultSuccessUrl("/success", true)
-                );
+                        .successHandler(new CustomLoginSuccessHandler())
+                       )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                );;
         return http.build();
     }
 

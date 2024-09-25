@@ -1,20 +1,32 @@
 package org.crm.gymapp.controller;
 
-import org.crm.gymapp.dto.LoginDAO;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class LoginController {
     @GetMapping("/login")
-    public String homePage() {
+    public String login() {
         return "login";
     }
 
-    @GetMapping("/success")
-    public String login() {
-        return "success";
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin-page";
+    }
+
+    @GetMapping("/userpage")
+    public String userLogin() {
+        return "user-page";
+    }
+
+    @GetMapping("/manager")
+    public String managerLogin() {
+        return "manager-page";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "login";
     }
 }
