@@ -30,7 +30,7 @@ public class CustomUserDetailService implements UserDetailsService {
                 true,
                 true,
                 user.getRoles().stream()
-                        .map(role -> new SimpleGrantedAuthority(role.getName()))
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
                         .toList()
         );
     }

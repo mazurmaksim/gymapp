@@ -1,6 +1,5 @@
 package org.crm.gymapp.handler;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
@@ -16,11 +15,11 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
                                         Authentication authentication) throws IOException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
-        if (roles.contains("ADMIN")) {
+        if (roles.contains("ROLE_ADMIN")) {
             response.sendRedirect("/admin");
-        } else if (roles.contains("USER")) {
+        } else if (roles.contains("ROLE_USER")) {
             response.sendRedirect("/userpage");
-        } else if (roles.contains("STAFF")) {
+        } else if (roles.contains("ROLE_STAFF")) {
             response.sendRedirect("/manager");
         } else {
             response.sendRedirect("/default");
