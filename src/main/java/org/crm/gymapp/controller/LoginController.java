@@ -1,6 +1,5 @@
 package org.crm.gymapp.controller;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,8 +11,7 @@ public class LoginController {
     }
 
     @GetMapping("/admin")
-    public String admin(Authentication authentication) {
-        System.out.println("Current user roles: " + authentication.getAuthorities());
+    public String admin() {
         return "admin";
     }
 

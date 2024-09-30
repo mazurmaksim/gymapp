@@ -12,5 +12,4 @@ public interface UserRepository extends Repository<UsersEntity, UUID> {
     void save(UsersEntity usersEntity);
     List<UsersEntity> findAll();
     void delete(UsersEntity usersEntity);
-
 }

@@ -1,15 +1,15 @@
 package org.crm.gymapp.controller;
 
-import org.crm.gymapp.dto.LoginDAO;
 import org.crm.gymapp.dto.UserDTO;
 import org.crm.gymapp.entity.UsersEntity;
 import org.crm.gymapp.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,7 +18,7 @@ import java.util.UUID;
 public class UserController {
     @Value("${spring.application.name}")
     private String appName;
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
