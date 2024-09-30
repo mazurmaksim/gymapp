@@ -1,13 +1,18 @@
 package org.crm.gymapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.crm.gymapp.entity.security.StaffUsers;
 import org.crm.gymapp.model.SubscriptionTypes;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
 import java.util.UUID;
@@ -31,6 +36,10 @@ public class SubscriptionsEntity {
 
     @Column(name = "coach")
     private boolean coach;
+
+    @Column(name = "is_active")
+    private boolean active;
+
 
     @ManyToMany(mappedBy = "userSubscriptions", fetch = FetchType.LAZY)
     @JsonBackReference

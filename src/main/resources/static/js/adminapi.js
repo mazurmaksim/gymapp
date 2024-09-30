@@ -26,16 +26,15 @@ function populateUserTable(users) {
         const row = document.createElement('tr');
 
         row.innerHTML = `
-            <td>${user.id}</td>
             <td>${user.username}</td>
             <td>${user.lastname}</td>
             <td>${new Date(user.regDate).toLocaleString()}</td> 
             <td>${user.email || 'N/A'}</td>
             <td>${user.phoneNumber || 'N/A'}</td>
             <td>${user.socialMedia || 'N/A'}</td> 
-            <td>${user.subscriptionType || 'N/A'}</td> 
-            <td>${user.price || 'N/A'}</td> 
-            <td>${user.coachIncluded ? 'Yes' : 'No'}</td> 
+            <td>${user.subscriptions.length === 0 ? 'N/A' : user.subscriptions[0].subType || 'N/A'}</td> 
+            <td>${user.subscriptions.length === 0 ? 'N/A' : user.subscriptions[0].price || 'N/A'}</td> 
+            <td>${user.subscriptions.length === 0 ? 'N/A' : user.subscriptions[0].coach ? 'Yes' : 'No'}</td> 
         `;
 
         tableBody.appendChild(row);

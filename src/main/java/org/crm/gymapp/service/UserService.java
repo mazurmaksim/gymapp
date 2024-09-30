@@ -45,7 +45,7 @@ public class UserService {
 
     private Set<SubscriptionDTO> convertSubscriptions(Set<SubscriptionsEntity> subscriptions) {
         return subscriptions.stream()
-                .map(sub -> new SubscriptionDTO(sub.getId(), sub.getSubType().getType()))
+                .map(sub -> new SubscriptionDTO(sub.getId(), sub.getSubType().getType(), sub.getPrice(), sub.isCoach(), sub.isActive()))
                 .collect(Collectors.toSet());
     }
 }

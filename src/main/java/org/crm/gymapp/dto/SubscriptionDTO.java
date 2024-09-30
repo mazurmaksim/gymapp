@@ -12,6 +12,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubscriptionDTO {
-    private UUID subId;
+    private UUID id;
     private String subType;
+    private double price;
+    private boolean coach;
+    private boolean isActive;
 }
