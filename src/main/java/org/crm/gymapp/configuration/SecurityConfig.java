@@ -27,7 +27,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/perform-logout","/static/js/adminapi.js")
+                        .requestMatchers(
+                                "/js/bootstrap-5.3.3-dist/css/bootstrap.min.css",
+                                "/login",
+                                "/perform-logout",
+                                "/js/adminapi.js",
+                                "/js/bootstrap-5.3.3-dist/js"
+                        )
                         .permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/userpage/**").hasRole("USER")
