@@ -37,8 +37,34 @@ function populateUserTable(users) {
             <td>${user.subscriptions.length === 0 ? 'N/A' : user.subscriptions[0].coach ? 'Yes' : 'No'}</td> 
         `;
 
+        row.addEventListener('click', () => {
+            openUserModal(user);
+        });
+
         tableBody.appendChild(row);
     });
+}
+
+function openUserModal(user) {
+    document.getElementById('username').value = user.username;
+    document.getElementById('lastname').value = user.lastname;
+    // document.getElementById('regDate').value = new Date(user.regDate).toISOString().slice(0, 16);
+    document.getElementById('email').value = user.email || '';
+    document.getElementById('phoneNumber').value = user.phoneNumber || '';
+    document.getElementById('socialMedia').value = user.socialMedia || '';
+
+    const userSubscriptions = document.getElementById('userSubscriptions');
+    userSubscriptions.innerHTML = '';
+    user.subscriptions.forEach(sub => {
+        const option = document.createElement('option');
+        option.value = sub.id;
+        option.text = sub.subType;
+        option.selected = true;
+        userSubscriptions.appendChild(option);
+    });
+
+    const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    modal.show();
 }
 
 getUsers()

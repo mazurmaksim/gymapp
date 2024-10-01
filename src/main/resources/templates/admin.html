@@ -39,20 +39,50 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <form id="userForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter first name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastname" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter last name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="regDate" class="form-label">Registration Date</label>
+                        <input type="datetime-local" class="form-control" id="regDate" name="regDate" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number">
+                    </div>
+                    <div class="mb-3">
+                        <label for="socialMedia" class="form-label">Social Media</label>
+                        <input type="text" class="form-control" id="socialMedia" name="socialMedia" placeholder="Enter social media links">
+                    </div>
+                    <div class="mb-3">
+                        <label for="userSubscriptions" class="form-label">Subscriptions</label>
+                        <select multiple class="form-select" id="userSubscriptions" name="userSubscriptions">
+                            <!-- Підписки будуть завантажені тут -->
+                        </select>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" onclick="saveUser()">Save changes</button>
             </div>
         </div>
     </div>
 </div>
-
 
 <script src="/js/adminapi.js"></script>
 <script src="/js/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
