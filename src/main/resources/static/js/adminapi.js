@@ -48,7 +48,7 @@ function populateUserTable(users) {
 function openUserModal(user) {
     document.getElementById('username').value = user.username;
     document.getElementById('lastname').value = user.lastname;
-    // document.getElementById('regDate').value = new Date(user.regDate).toISOString().slice(0, 16);
+    document.getElementById('regDate').value = new Date(user.regDate).toISOString().slice(0, 16);
     document.getElementById('email').value = user.email || '';
     document.getElementById('phoneNumber').value = user.phoneNumber || '';
     document.getElementById('socialMedia').value = user.socialMedia || '';
