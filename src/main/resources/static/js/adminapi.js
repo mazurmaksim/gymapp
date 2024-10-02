@@ -52,6 +52,8 @@ function openUserModal(user) {
     document.getElementById('email').value = user.email || '';
     document.getElementById('phoneNumber').value = user.phoneNumber || '';
     document.getElementById('socialMedia').value = user.socialMedia || '';
+    document.getElementById('subStatus').innerText = user.subscriptions.length === 0 ? 'Unknown status' : user.subscriptions[0].active ? 'Active: ' + user.subscriptions[0].subType : 'Not Active';
+
 
     const userSubscriptions = document.getElementById('userSubscriptions');
     userSubscriptions.innerHTML = '';
