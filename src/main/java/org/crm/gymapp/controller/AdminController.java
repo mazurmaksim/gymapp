@@ -1,6 +1,6 @@
 package org.crm.gymapp.controller;
 
-import org.crm.gymapp.dto.UserDTO;
+import org.crm.gymapp.dto.UsersDto;
 import org.crm.gymapp.entity.UsersEntity;
 import org.crm.gymapp.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -21,14 +21,14 @@ public class AdminController {
     }
 
     @GetMapping("/admin/users")
-    public List<UserDTO> getUsers() {
+    public List<UsersDto> getUsers() {
         return mapList(userService.getAllUsers(), modelMapper);
     }
 
-    List<UserDTO> mapList(List<UsersEntity> source, ModelMapper modelMapper) {
+    List<UsersDto> mapList(List<UsersEntity> source, ModelMapper modelMapper) {
         return source
                 .stream()
-                .map(element -> modelMapper.map(element, UserDTO.class))
+                .map(element -> modelMapper.map(element, UsersDto.class))
                 .collect(Collectors.toList());
     }
 }

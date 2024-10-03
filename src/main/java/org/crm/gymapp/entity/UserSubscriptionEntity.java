@@ -3,16 +3,15 @@ package org.crm.gymapp.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.crm.gymapp.model.SubscriptionTypes;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -22,18 +21,14 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "subscriptions")
-public class SubscriptionsEntity {
+@Table(name = "chosen_subscription")
+public class UserSubscriptionEntity {
 
     @Id
     private UUID id;
 
-    @Column(name = "sub_type")
-    @Enumerated(EnumType.STRING)
-    private SubscriptionTypes subType;
-
     @Column(name = "price")
-    private double price;
+    private double userPaid;
 
     @Column(name = "coach")
     private boolean coach;
@@ -44,7 +39,11 @@ public class SubscriptionsEntity {
     @Column(name="activation_date")
     LocalDateTime activationDate;
 
-    @ManyToMany(mappedBy = "userSubscriptions", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "userSubscription", fetch = FetchType.LAZY)
     @JsonBackReference
     Set<UsersEntity> userEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "sub_type", referencedColumnName = "id")
+    private GymSubscriptionEntity existingSubscriptions;
 }

@@ -32,9 +32,9 @@ function populateUserTable(users) {
             <td>${user.email || 'N/A'}</td>
             <td>${user.phoneNumber || 'N/A'}</td>
             <td>${user.socialMedia || 'N/A'}</td> 
-            <td>${user.subscriptions.length === 0 ? 'N/A' : user.subscriptions[0].subType || 'N/A'}</td> 
-            <td>${user.subscriptions.length === 0 ? 'N/A' : user.subscriptions[0].price || 'N/A'}</td> 
-            <td>${user.subscriptions.length === 0 ? 'N/A' : user.subscriptions[0].coach ? 'Yes' : 'No'}</td> 
+            <td>${user.userSubscription.length === 0 || false ? 'N/A' : user.userSubscription[0].existingSubscriptions.subType || 'N/A'}</td> 
+            <td>${user.userSubscription.length === 0 || false ? 'N/A' : user.userSubscription[0].userPaid || 'N/A'}</td> 
+            <td>${user.userSubscription.length === 0 || false ? 'N/A' : user.userSubscription[0].coach ? 'Yes' : 'No'}</td> 
         `;
 
         row.addEventListener('click', () => {
@@ -52,18 +52,14 @@ function openUserModal(user) {
     document.getElementById('email').value = user.email || '';
     document.getElementById('phoneNumber').value = user.phoneNumber || '';
     document.getElementById('socialMedia').value = user.socialMedia || '';
-    document.getElementById('subStatus').innerText = user.subscriptions.length === 0 ? 'Unknown status' : user.subscriptions[0].active ? 'Active: ' + user.subscriptions[0].subType : 'Not Active';
+    document.getElementById('subStatus').innerText = user.userSubscription.length === 0 ? 'Unknown status' :
+        user.userSubscription[0].active ? 'Active: ' + user.userSubscription[0].existingSubscriptions.subType : 'Not Active: ' + user.userSubscription[0].existingSubscriptions.subType;
 
 
     const userSubscriptions = document.getElementById('userSubscriptions');
     userSubscriptions.innerHTML = '';
-    user.subscriptions.forEach(sub => {
-        const option = document.createElement('option');
-        option.value = sub.id;
-        option.text = sub.subType;
-        option.selected = true;
-        userSubscriptions.appendChild(option);
-    });
+    userSubscriptions.value = user.userSubscription.length === 0 ? 'No Subscription' :  user.userSubscription[0].existingSubscriptions.subType;
+    userSubscriptions.text = user.userSubscription.length === 0 ? 'emptySubscription' : user.userSubscription[0].existingSubscriptions.id;
 
     const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
     modal.show();

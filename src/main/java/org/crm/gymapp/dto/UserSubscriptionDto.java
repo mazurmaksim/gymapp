@@ -13,12 +13,12 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubscriptionDTO {
+public class UserSubscriptionDto {
     private UUID id;
-    private String subType;
-    private double price;
+    private double userPaid;
     private boolean coach;
-    private boolean isActive;
+    private boolean active;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime activationDate;
+    private GymSubscriptionDto existingSubscriptions;
 }

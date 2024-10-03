@@ -1,6 +1,6 @@
 package org.crm.gymapp.controller;
 
-import org.crm.gymapp.dto.UserDTO;
+import org.crm.gymapp.dto.UsersDto;
 import org.crm.gymapp.entity.UsersEntity;
 import org.crm.gymapp.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -25,17 +25,17 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public UserDTO getUser(@RequestParam String userId) {
+    public UsersDto getUser(@RequestParam String userId) {
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(userService.getUserById(UUID.fromString(userId)), UserDTO.class);
+        return modelMapper.map(userService.getUserById(UUID.fromString(userId)), UsersDto.class);
     }
 
     @PostMapping("/user/save")
-    public UserDTO saveUser(@RequestBody UserDTO userDTO) {
+    public UsersDto saveUser(@RequestBody UsersDto userDTO) {
         ModelMapper modelMapper = new ModelMapper();
         userDTO.setRegDate(LocalDateTime.now());
         UsersEntity map = modelMapper.map(userDTO, UsersEntity.class);
         userService.saveUser(map);
-        return modelMapper.map(map, UserDTO.class);
+        return modelMapper.map(map, UsersDto.class);
     }
 }
