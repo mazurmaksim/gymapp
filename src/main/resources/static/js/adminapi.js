@@ -64,6 +64,43 @@ function openUserModal(user) {
     const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
     modal.show();
 }
+function saveUser() {
+    const userData = {
+        username: document.getElementById('username').value,
+        lastname: document.getElementById('lastname').value,
+        regDate: document.getElementById('regDate').value,
+        email: document.getElementById('email').value,
+        phoneNumber: document.getElementById('phoneNumber').value,
+        socialMedia: document.getElementById('socialMedia').value,
+        userSubscriptions: document.getElementById('userSubscriptions').value
+    };
+
+    const csrfToken = document.getElementById('csrfToken').value;
+
+    fetch('/admin/user/save', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify(userData)
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to save user');
+            }
+        })
+        .then(data => {
+            alert('User saved successfully');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error saving user');
+        });
+}
+
 
 getUsers()
     .then(users => {
